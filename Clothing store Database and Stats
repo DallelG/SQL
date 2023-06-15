@@ -1,0 +1,44 @@
+--Create a clothing store database
+CREATE TABLE clothing (id INTEGER PRIMARY KEY, name TEXT, size INTEGER, color TEXT,
+price INTEGER);
+
+INSERT INTO clothing VALUES (1, "dress", "M", "red", 50);
+INSERT INTO clothing VALUES (2, "blazer", "S", "black", 100);
+INSERT INTO clothing VALUES (3, "pant", "XS", "beige", 50);
+INSERT INTO clothing VALUES (4, "skirt","XL", "yellow", 30);
+INSERT INTO clothing VALUES (5, "tshirt", "S", "white", 20);
+INSERT INTO clothing VALUES (6, "coat", "L", "black", 150);
+INSERT INTO clothing VALUES (7, "short", "XS", "blue", 40);
+INSERT INTO clothing VALUES (8, "jumpsuit", "XXL", "burgundy", 80);
+INSERT INTO clothing VALUES (9, "swimsuit", "M", "orange", 60);
+INSERT INTO clothing VALUES (10, "hat", "SM", "purple", 30);
+INSERT INTO clothing VALUES (11, "jaket", "XXS", "blue", 55);
+INSERT INTO clothing VALUES (12, "jean", "S", "navy", 45);
+INSERT INTO clothing VALUES (13, "top", "L", "green", 20);
+INSERT INTO clothing VALUES (14, "sweatshirt", "XL", "grey", 70);
+INSERT INTO clothing VALUES (15, "bonet", "S", "brown", 20);
+
+--Select statements to order items by price 
+SELECT* FROM clothing 
+ORDER BY  price DESC;
+
+--Show at least one statistic about the items
+SELECT SUM(price)FROM clothing;
+
+SELECT AVG(price)
+FROM clothing;
+
+SELECT color FROM clothing
+ORDER BY (price) ASC; 
+
+SELECT MAX(price)
+FROM clothing;
+
+SELECT MIN(price)
+FROM clothing;
+
+SELECT COUNT (color)
+FROM clothing;
+
+SELECT COUNT (color)
+FROM clothing WHERE price > 50;
