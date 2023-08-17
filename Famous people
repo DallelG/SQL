@@ -1,0 +1,88 @@
+#In this project, I create a table with some small set of famous people "singers", 
+then another table about things they do "songs" and joined those to create nice human readable lists.
+ 
+# The project was written using SQL and utilized data from the following two tables datasets:
+
+CREATE TABLE singers (id INTEGER PRIMARY KEY,
+ name TEXT,
+country TEXT,
+age INTEGER);
+
+INSERT INTO singers (name, country, age) VALUES ("Mariah carey", "USA", 54);
+INSERT INTO singers (name, country, age) VALUES ("Celine dion", "CANADA", 55);
+INSERT INTO singers (name, country, age) VALUES ("Jennifer lopez", "USA", 54);
+INSERT INTO singers (name, country, age) VALUES ("Beyonce", "USA", 41);
+INSERT INTO singers (name, country, age) VALUES ("Lara fabian", "BELGIUM", 53);
+
+CREATE TABLE songs ( id INTEGER PRIMARY KEY AUTOINCREMENT, 
+artist_id INTEGER, 
+title_song TEXT,
+release_year INTEGER);
+
+INSERT INTO songs (artist_id, title_song, release_year) VALUES (1,"Emotions", 1991);
+INSERT INTO songs (artist_id, title_song, release_year) VALUES (1,"Without you", 1994);
+INSERT INTO songs (artist_id, title_song, release_year) VALUES (1,"My all", 1998);
+INSERT INTO songs (artist_id, title_song, release_year) VALUES (1,"Through the rain", 2002);
+INSERT INTO songs (artist_id, title_song, release_year) VALUES (1,"We belong together", 2005);
+INSERT INTO songs (artist_id, title_song, release_year) VALUES (1,"Bye bye", 2008);
+INSERT INTO songs (artist_id, title_song, release_year) VALUES (1,"Someday", 1991);
+INSERT INTO songs (artist_id, title_song, release_year) VALUES (2,"New day has come", 2002);
+INSERT INTO songs (artist_id, title_song, release_year) VALUES (2,"Pour que tu m'aime encore", 1995);
+INSERT INTO songs (artist_id, title_song, release_year) VALUES (2,"My heart will go on", 1997);
+INSERT INTO songs (artist_id, title_song, release_year) VALUES (2,"S'il suffisait d'aimer", 1998);
+INSERT INTO songs (artist_id, title_song, release_year) VALUES (2,"On ne change pas", 1998);
+INSERT INTO songs (artist_id, title_song, release_year) VALUES (3,"If you had my love", 1999);
+INSERT INTO songs (artist_id, title_song, release_year) VALUES (3,"I'm real", 2001);
+INSERT INTO songs (artist_id, title_song, release_year) VALUES (3,"Let's get loud", 1999);
+INSERT INTO songs (artist_id, title_song, release_year) VALUES (3,"Que hiciste", 2007);
+INSERT INTO songs (artist_id, title_song, release_year) VALUES (4,"Me myself and i", 2003);
+INSERT INTO songs (artist_id, title_song, release_year) VALUES (4,"Listen", 2006);
+INSERT INTO songs (artist_id, title_song, release_year) VALUES (4,"Hallo", 2008);
+INSERT INTO songs (artist_id, title_song, release_year) VALUES (5,"Je t'aime", 1997);
+INSERT INTO songs (artist_id, title_song, release_year) VALUES (5,"Adagio", 1999);
+INSERT INTO songs (artist_id, title_song, release_year) VALUES (5,"Tout", 1996);
+
+#1.List all the singers in alphabetical order.
+SELECT * FROM singers;
+ORDER BY name ASC;
+
+#2.Display singers and their respective songs using JOIN
+SELECT singers.name, songs.title_song
+FROM singers
+JOIN songs
+ON songs.artist_id = singers.id;
+
+#3.Display singers and their respective songs,release year using JOIN  
+SELECT singers.name, songs.title_song, songs.release_year
+FROM singers
+JOIN songs
+ON songs.artist_id = singers.id;
+
+#4.Display singers and their respective songs,release year using JOIN and order by recent to old
+SELECT singers.name, songs.title_song, songs.release_year
+FROM singers
+JOIN songs
+ORDER BY release_year DESC;
+
+#5.Display songs from year 2000 and up (using join)
+SELECT title_song new_songs
+FROM songs
+JOIN singers
+ON songs.artist_id = singers.id
+WHERE release_year > 2000;
+
+#6.List all singers from USA
+SELECT  name
+FROM singers
+WHERE country = "USA";
+ 
+
+
+
+
+
+
+
+
+
+# The following SQL was written to answer specific questions about the content on famous people:
