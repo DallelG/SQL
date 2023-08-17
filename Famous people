@@ -42,6 +42,8 @@ INSERT INTO songs (artist_id, title_song, release_year) VALUES (5,"Je t'aime", 1
 INSERT INTO songs (artist_id, title_song, release_year) VALUES (5,"Adagio", 1999);
 INSERT INTO songs (artist_id, title_song, release_year) VALUES (5,"Tout", 1996);
 
+# The following SQL was written to answer specific questions about the singers and their famous songs:
+
 #1.List all the singers in alphabetical order.
 SELECT * FROM singers;
 ORDER BY name ASC;
