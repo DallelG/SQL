@@ -1,0 +1,88 @@
+# For this project, I downloaded Spotify data from Kaggle.
+# Then I created a table to insert Spotify data into.
+# Finally, I performed analytics on the data using SQL. 
+
+#Creating the table: 
+CREATE TABLE BIT_DB.Spotifydata (
+id integer PRIMARY KEY,
+artist_name varchar NOT NULL,
+track_name varchar NOT NULL,
+track_id varchar NOT NULL,
+popularity integer NOT NULL,
+danceability decimal(4,3) NOT NULL,
+energy decimal(4,3) NOT NULL,
+key integer NOT NULL,
+loudness decimal(5,3) NOT NULL,
+mode integer NOT NULL,
+speechiness decimal(5,4) NOT NULL,
+acousticness decimal(6,5) NOT NULL,
+instrumentalness text NOT NULL,
+liveness decimal(5,4) NOT NULL,
+valence decimal(4,3) NOT NULL,
+tempo decimal(6,3) NOT NULL,
+duration_ms integer NOT NULL,
+time_signature integer NOT NULL 
+)
+
+#Then I inserted the Spotify Data .csv into the table.
+
+#Next, I explored the data using the following SQL. 
+
+#1.  I determined the avg popularity, danceability, and energy by artist and track. 
+
+SELECT
+artist_name
+,track_name
+,avg(popularity)
+,avg(danceability)
+,avg(energy)
+FROM BIT_DB.spotifydata
+GROUP BY artist_name, track_name
+
+#2.  who are the Top 10 artists are by popularity
+
+SELECT track_name, artist_name, popularity
+FROM BIT_DB.spotifydata
+ORDER BY popularity desc
+LIMIT 10
+
+#3.  What artist released the longest song?
+SELECT artist_name, track_name, duration_ms
+FROM Spotifydata
+ORDER BY duration_ms DESC
+LIMIT 1
+
+#4.  What's the average danceability for the 10 most popular songs?
+SELECT AVG(danceability), artist_name, track_name
+FROM Spotifydata
+GROUP BY artist_name, track_name
+ORDER BY danceability DESC 
+LIMIT 10
+
+#5.  Query the number of songs that have other artists featured on the song
+SELECT COUNT(*)
+FROM BIT_DB.spotifydata
+WHERE track_name LIKE ‘%feat%’ OR track_name  LIKE ‘%&%’ OR LIKE ‘%ft%’ LIKE ‘%with%’;
+
+#6.  Query the name  of songs that have other artists featured on the song
+SELECT track_name
+FROM BIT_DB.spotifydata
+WHERE track_name LIKE '%feat%' OR track_name LIKE '%&%'
+
+#7.  Query the maximum energy in spotifydata
+SELECT MAX(energy)
+FROM BIT_DB.spotifydata
+
+#8.  Look at the top 10 songs to see if they are above or below the average energy
+SELECT track_name, energy,
+(CASE
+WHEN energy > 0.64636 THEN 'Above Average'
+WHEN energy = 0.64636 THEN 'Average'
+WHEN energy < 0.64636 THEN 'Below Average'
+END) AS AverageEnergy
+FROM BIT_DB.spotifydata
+LIMIT 10;
+
+
+
+
